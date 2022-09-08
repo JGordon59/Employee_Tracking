@@ -107,7 +107,7 @@ const questions = [
             if (typeof newRoleTitle == 'string' && newRoleTitle.length <= 30) {
                 return true;
             } else {
-                console.log('Please enter in the name of the new role to continue.');
+                console.log('Please enter in the name of the new role to proceed.');
                 return false;
             }
         }
@@ -277,7 +277,7 @@ const init = () => {
                         console.error(err);
                     } else {
                         updateInfo();
-                        console.log(`\nAdded the ${response.newDepartment} department!`);
+                        console.log(`\n ${response.newDepartment} has been successfully added as a new department!`);
                     }
                 });
                 init();
@@ -287,7 +287,7 @@ const init = () => {
                         console.error(err);
                     } else {
                         updateInfo();
-                        console.log(`\nAdded the ${response.newRoleTitle} role!`);
+                        console.log(`\n The ${response.newRoleTitle} has successfully been added as a new role!`);
                     }
                 });
                 init();
@@ -297,7 +297,7 @@ const init = () => {
                         console.error(err);
                     } else {
                         updateInfo();
-                        console.log(`\nAdded ${response.employeeFN} ${response.employeeSN} to the employee database!`);
+                        console.log(`\nYour new employee, ${response.employeeFN} ${response.employeeSN} has been added to the database successfully!`);
                     }
                 });
                 init();
@@ -307,7 +307,7 @@ const init = () => {
                         console.error(err);
                     } else {
                         updateInfo();
-                        console.log(`\nUpdated this employee's role!`);
+                        console.log(`\nThis employee's role has been updated successfully!`);
                     }
                 });
                 init();
