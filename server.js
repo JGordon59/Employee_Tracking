@@ -12,22 +12,23 @@ const db = mysql.createConnection(
     console.log(`You have successfully connected to the employee database.`)
 );
 
-let departments = [];
-let roles = [];
-let managers = [];
-let employees = [];
+let manager = [];
+let employee = [];
+let dapartment = [];
+let role = [];
+
 
 const updateInfo = () => {
     db.query('SELECT CONCAT(department_id, ": ", department_name) AS department_name FROM departments', function (err, results) {
         if (err) {
             console.error(err);
         } else {
-            departments.splice(0, 0);
+            dapartment.splice(0, 0);
             for (var i = 0; i < results.length; i++) {
                 var row = results[i];
-                departments.push(row.department_name);
+                dapartment.push(row.department_name);
             }
-            return departments;
+            return dapartment;
         }
     });
 
@@ -35,12 +36,12 @@ const updateInfo = () => {
         if (err) {
             console.error(err);
         } else {
-            roles.splice(0, 0);
+            role.splice(0, 0);
             for (var i = 0; i < results.length; i++) {
                 var row = results[i];
-                roles.push(row.role_title);
+                role.push(row.role_title);
             }
-            return roles;
+            return role;
         }
     });
 
@@ -48,12 +49,12 @@ const updateInfo = () => {
         if (err) {
             console.error(err);
         } else {
-            managers.splice(0, 0);
+            manager.splice(0, 0);
             for (var i = 0; i < results.length; i++) {
                 var row = results[i];
-                managers.push(row.managerInfo);
+                manager.push(row.managerInfo);
             }
-            return managers;
+            return manager;
         }
     });
 
@@ -61,12 +62,12 @@ const updateInfo = () => {
         if (err) {
             console.error(err);
         } else {
-            employees.splice(0, 0);
+            employee.splice(0, 0);
             for (var i = 0; i < results.length; i++) {
                 var row = results[i];
-                employees.push(row.employeeInfo);
+                employee.push(row.employeeInfo);
             }
-            return employees;
+            return employee;
         }
     });
 }
@@ -134,7 +135,7 @@ const questions = [
         when(answers) {
             return answers.proceed === 'Add a Role'
         },
-        choices: departments,
+        choices: dapartment,
         default: 0,
         filter(answer) {
             let position = answer.search(/:/);
@@ -181,7 +182,7 @@ const questions = [
         when(answers) {
             return answers.proceed === 'Add an Employee'
         },
-        choices: roles,
+        choices: role,
         default: 0,
         filter(answer) {
             let position = answer.search(/:/);
@@ -196,7 +197,7 @@ const questions = [
         when(answers) {
             return answers.proceed === 'Add an Employee'
         },
-        choices: managers,
+        choices: manager,
         default: 0,
         filter(answer) {
             let position = answer.search(/:/);
@@ -211,7 +212,7 @@ const questions = [
         when(answers) {
             return answers.proceed === 'Update an Employee Role'
         },
-        choices: employees,
+        choices: employee,
         default: 0,
         filter(answer) {
             let position = answer.search(/:/);
@@ -226,7 +227,7 @@ const questions = [
         when(answers) {
             return answers.proceed === 'Update an Employee Role'
         },
-        choices: roles,
+        choices: role,
         default: 0,
         filter(answer) {
             let position = answer.search(/:/);
